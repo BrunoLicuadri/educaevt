@@ -2,6 +2,9 @@ package com.godknows.educaevt.entities;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name="tb_categoria")
 public class Categoria {
@@ -10,6 +13,9 @@ public class Categoria {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer Id;
     private String descricao;
+
+    @OneToMany(mappedBy="categoria")
+    private List<Atividade> atv = new ArrayList<>();
 
     public Categoria(){
     }
@@ -33,5 +39,9 @@ public class Categoria {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public List<Atividade> getAtv() {
+        return atv;
     }
 }
